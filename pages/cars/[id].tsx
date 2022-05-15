@@ -1,8 +1,7 @@
-import Layout from '../components/app/Layout'
-import CarouselIndicators from '../components/header/Carosoul'
-import NewProduct from '../components/NewProduct/NewProduct'
-import API from '../lib/api/fetcher'
-import { Make } from '../types/common'
+import Layout from '../../components/app/Layout'
+import CarDetail from '../../components/CarDetail/CarDetail'
+import API from '../../lib/api/fetcher'
+import { Make } from '../../types/common'
 
 type Props = {
   popularMakes: {
@@ -21,8 +20,7 @@ const Home = (props: Props) => {
         className=" flex h-full w-full !flex-1 flex-col"
         style={{ height: '100%' }}
       >
-        <CarouselIndicators />
-        <NewProduct popularMakes={popularMakes} />
+        <CarDetail popularMakes={popularMakes} />
       </main>
     </Layout>
   )
