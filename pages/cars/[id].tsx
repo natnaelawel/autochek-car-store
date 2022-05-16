@@ -1,36 +1,37 @@
 import Layout from '../../components/app/Layout'
 import CarDetail from '../../components/CarDetail/CarDetail'
 import API from '../../lib/api/fetcher'
-import { Make } from '../../types/common'
+import { carMedia, Make } from '../../types/common'
 
 type Props = {
-  popularMakes: {
-    makeList: Make[]
-    total: number
-    currentPage: number
-    pageSize: number
-  }
+  carMediaList: carMedia[]
+  total: number
+  currentPage: number
+  pageSize: number
 }
 
-const Home = (props: Props) => {
-  const { popularMakes } = props
+const CarDetailPage = (props: Props) => {
   return (
-    <Layout title={'Home'} description={'Some Description'}>
+    <Layout title={'Detail'} description={'Some Description'}>
       <main
         className=" flex h-full w-full !flex-1 flex-col"
         style={{ height: '100%' }}
       >
-        <CarDetail popularMakes={popularMakes} />
+        <CarDetail cardetail={props} />
       </main>
     </Layout>
   )
 }
 
 export async function getServerSideProps() {
-  const res = await API.get('/inventory/make?popular=true')
-  const popularMakes: Make[] = res.data
-  console.log(popularMakes, 'is popularMakes')
-  return { props: { popularMakes } }
+  try {
+    const res = await API.get('https://api-prod.autochek.africa/v1/inventory/car_media?carId=R1nVTV4Mj')
+    const carMedia = res.data
+    return { props: carMedia }
+  } catch (error) {
+    console.log(error)
+    return { props: { carMedia: null } }
+  }
 }
 
-export default Home
+export default CarDetailPage

@@ -29,7 +29,7 @@ const NewProduct = (props: Props) => {
           <div className="flex w-3/4 flex-col items-center gap-y-10 ">
             <div className="popular min-h-[500px] w-full shadow-xl drop-shadow-xl ">
               <div className="flex flex-col gap-5">
-                <h3 className="my-5 py-2 text-center text-4xl">Popular Car</h3>
+                <h3 className="my-5 py-2 text-center text-4xl">Popular Makes</h3>
                 <div className="my-5 grid grid-cols-3 gap-10 p-5">
                   {props.popularMakes.makeList.length > 0 &&
                     props.popularMakes.makeList
@@ -38,7 +38,7 @@ const NewProduct = (props: Props) => {
                         return (
                           <Link
                             key={item.id}
-                            href={item.name.trim().toLowerCase()}
+                            href={`/cars/${item.name.trim().toLowerCase()}`}
                           >
                             <div className="flex cursor-pointer flex-col items-center gap-2 transition-all duration-300 hover:scale-110">
                               <div className="relative flex w-[150px] items-center justify-center">
@@ -59,7 +59,7 @@ const NewProduct = (props: Props) => {
             </div>
             <div className="popular min-h-[500px] w-full shadow-xl drop-shadow-xl ">
               <div className="flex flex-col gap-5">
-                <h3 className="my-5 py-2 text-center text-4xl">Popular Car</h3>
+                <h3 className="my-5 py-2 text-center text-4xl">Trending Cars</h3>
                 <div className="my-5 grid grid-cols-3 gap-10 p-5">
                   {props.popularMakes.makeList.length > 0 &&
                     props.popularMakes.makeList
@@ -84,29 +84,6 @@ const NewProduct = (props: Props) => {
                           </Link>
                         )
                       })}
-                </div>
-              </div>
-            </div>
-            <div className="popular hidden min-h-[500px] w-full shadow-xl drop-shadow-xl md:flex">
-              <div className="titl">
-                <h3 className="my-5 py-2 text-center text-4xl">Popular Car</h3>
-                <div className="my-5 grid grid-cols-3 gap-10">
-                  {[1, 2, 3, 4, 5].map((item, index) => {
-                    return (
-                      <div className="flex flex-col items-center gap-2">
-                        <img
-                          src="https://demo.w3layouts.com/demos_new/template_demo/28-08-2018/electro_store-demo_Free/1204782700/web/images/m1.jpg"
-                          alt="fsf"
-                        />
-                        <hr />
-                        <h4>Samsung Galaxy J7</h4>
-                        <div className="">
-                          <h5 className="text-red-600">$200.00</h5>
-                          <h6 className="line-through">$280.00</h6>
-                        </div>
-                      </div>
-                    )
-                  })}
                 </div>
               </div>
             </div>

@@ -22,17 +22,29 @@ const Home = (props: Props) => {
         style={{ height: '100%' }}
       >
         <CarouselIndicators />
-        <NewProduct popularMakes={popularMakes} />
+        {popularMakes ? (
+          <NewProduct popularMakes={popularMakes} />
+        ) : (
+          <h1>Loading</h1>
+        )}
       </main>
     </Layout>
   )
 }
 
 export async function getServerSideProps() {
-  const res = await API.get('/inventory/make?popular=true')
-  const popularMakes: Make[] = res.data
-  console.log(popularMakes, 'is popularMakes')
-  return { props: { popularMakes } }
+  try {
+    const res = await API.get(
+      'https://api.staging.myautochek.com/v1/inventory/make?popular=true'
+    )
+
+    const popularMakes = res.data
+    // console.log(popularMakes, ' is popular')
+    return { props: { popularMakes } }
+  } catch (error) {
+    // console.log(error, ' is error popular')
+    return { props: { popularMakes: null } }
+  }
 }
 
 export default Home

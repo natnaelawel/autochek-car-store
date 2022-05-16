@@ -1,7 +1,10 @@
 import axios from 'axios'
+import axiosRetry from 'axios-retry'
 
-const API = axios.create({
-  baseURL: `https://api.staging.myautochek.com/v1`,
-})
+// const API = axios.create({
+//   baseURL: `https://api.staging.myautochek.com/v1`,
+// })
 
-export default API
+axiosRetry(axios, { retries: 3 })
+
+export default axios

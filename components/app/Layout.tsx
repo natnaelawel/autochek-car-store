@@ -46,7 +46,7 @@ export default function Layout({ title, description, children }: LayoutProps) {
           <meta name="twitter:description" content={description} />
           <meta name="twitter:image" content={logo} />
         </Head>
-        <div className="flex min-h-screen w-full min-w-max flex-col">
+        <div className="flex min-h-screen w-full overflow-hidden  flex-col">
           <div className="flex min-h-[2.75rem] items-center justify-center bg-blue-600 px-1 md:px-10 ">
             <TopHeader />
           </div>
